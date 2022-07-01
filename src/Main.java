@@ -20,7 +20,7 @@ public class Main {
         } if (command == 2) {
             System.out.println("За какой месяц вы хотите посмотреть статистику?");
             int monthCount = scanner.nextInt();
-            stepTracker.
+            stepTracker;
 
         } if (command == 4) {
             System.out.println("Выход");

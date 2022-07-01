@@ -7,6 +7,6 @@ public class StepTracker {
     System.out.println("Значение за месяц " + monthCount + "и день " + dayCount + "в размере " + saveStep + "шагов.");
     return saveStep;
     }
-    int showStatMonthly
+    int showStatMonthly;
 
 }
