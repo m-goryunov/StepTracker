@@ -4,14 +4,25 @@ public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Вас привествует счетчик каллорий!");
+        StepTracker stepTracker = new StepTracker();
 
     while(true) {
     printMenu();
         int command = scanner.nextInt();
-        if (command == 1) {}
+        if (command == 1) {
+            System.out.println("За какой месяц ввести кол-во шагов?");
+            int monthCount = scanner.nextInt();
+            System.out.println("За какой день ввести кол-во шагов?");
+            int dayCount = scanner.nextInt();
+            System.out.println("Сколько шагов записать?");
+            int stepCount = scanner.nextInt();
+            stepTracker.stepSaver(monthCount,dayCount,stepCount);
+        } if (command == 2) {
+            System.out.println("За какой месяц вы хотите посмотреть статистику?");
+            int monthCount = scanner.nextInt();
+            stepTracker.
 
-            //...
-        if (command == 4) {
+        } if (command == 4) {
             System.out.println("Выход");
             break;
         }
