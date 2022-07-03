@@ -4,42 +4,49 @@ public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Вас привествует счетчик каллорий!");
+        printMenu();
+        int command = scanner.nextInt();
         StepTracker stepTracker = new StepTracker();
 
-    while(true) {
-    printMenu();
-        int command = scanner.nextInt();
-        if (command == 1) {
-            System.out.println("За какой месяц ввести кол-во шагов?");
-            int monthCount = scanner.nextInt();
-            System.out.println("За какой день ввести кол-во шагов?");
-            int dayCount = scanner.nextInt();
-            System.out.println("Сколько шагов записать?");
-            int stepCount = scanner.nextInt();
-            stepTracker.stepSaver(monthCount,dayCount,stepCount);
-        } if (command == 2) {
-            System.out.println("За какой месяц вы хотите посмотреть статистику?");
-            int monthCount = scanner.nextInt();
-            stepTracker;
+        while(command != 0) {
 
-        } if (command == 4) {
-            System.out.println("Выход");
-            break;
+
+            if (command == 1) {
+                System.out.println("За какой месяц ввести кол-во шагов?");
+                int monthInput = scanner.nextInt();
+                System.out.println("За какой день ввести кол-во шагов?");
+                int dayInput = scanner.nextInt();
+                System.out.println("Сколько шагов записать?");
+                int stepInput = scanner.nextInt();
+                stepTracker.stepSaver(monthInput,dayInput,stepInput);
+            } if (command == 2) {
+                System.out.println("За какой месяц вы хотите посмотреть статистику?");
+                int monthInput = scanner.nextInt();
+                stepTracker.showStatMonthly(monthInput);
+                stepTracker.showSumStepsMonthly(monthInput);
+            } if (command == 3) {
+                System.out.println("Ввведите новое значение цели по количеству шагов за день.");
+                int newStepsGoal = scanner.nextInt();
+                stepTracker.changeStepsGoal(newStepsGoal);
+            } if (command == 4) {
+                System.out.println("Выход");
+                break;
+            } else {
+            System.out.println("Такая команда не поддерживается.");
+            }
+            printMenu();
+            command = scanner.nextInt();
         }
-        else {
-        System.out.println("Такая команда не поддерживается");
+    }
+
+        public static void printMenu() {
+            System.out.println("Что вы хотите сделать?");
+            System.out.println("1. Ввести количество шагов за день");
+            System.out.println("2. Посмотреть статистику за месяц");
+            System.out.println("3. Изменить цель по количеству шагов за день");
+            System.out.println("4. Выход из программы");
+
         }
-    }
-    }
-
-    public static void printMenu() {
-        System.out.println("Что вы хотите сделать?");
-        System.out.println("1. Ввести количество шагов за день");
-        System.out.println("2. Посмотреть статистику за месяц");
-        System.out.println("3. Изменить цель по количеству шагов за день");
-        System.out.println("4. Выход из программы");
-
-    }
 
 
 }
