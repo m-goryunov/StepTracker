@@ -7,6 +7,8 @@ public class Main {
         printMenu();
         int command = scanner.nextInt();
         StepTracker stepTracker = new StepTracker();
+        Converter converter = new Converter();
+        int stepsGoal = 10000;
 
         while(command != 0) {
             if (command == 1) {
@@ -16,17 +18,32 @@ public class Main {
                 int dayInput = scanner.nextInt();
                 System.out.println("Сколько шагов записать?");
                 int stepInput = scanner.nextInt();
-                stepTracker.stepSaver(monthInput,dayInput,stepInput);
+                if (stepInput > 0) {
+                    stepTracker.stepSaver(monthInput,dayInput,stepInput);
+                } else {
+                    System.out.println("Колчество шагов не может быть отрицательным");
+                }
+
             } else if (command == 2) {
                 System.out.println("За какой месяц вы хотите посмотреть статистику?");
                 int monthInput = scanner.nextInt();
                 stepTracker.showStatsByDay(monthInput);
-                stepTracker.showStatsMonthly(monthInput);
-                stepTracker.findMaxStreak(monthInput);
+                int sumSteps = stepTracker.showStatsMonthly(monthInput);
+                System.out.println("Общая сумма шагов за месяц: " + sumSteps);
+                System.out.println("Среднее ко-во шагов за месяц составляет: " + sumSteps/30);
+                System.out.println("За месяц вы прошли: " + converter.stepsToKm(sumSteps) + " километров");
+                System.out.println("За месяц вы сожгли: " + converter.stepsToKCal(sumSteps) + " килокалорий");
+                int maxStreak = stepTracker.findMaxStreak(monthInput, stepsGoal);
+                System.out.println("Ваша лучшая серия составила: " + maxStreak);
             } else if (command == 3) {
                 System.out.println("Ввведите новое значение цели по количеству шагов за день.");
                 int newStepsGoal = scanner.nextInt();
-                stepTracker.changeStepsGoal(newStepsGoal);
+                if (newStepsGoal > 0){
+                    stepsGoal = newStepsGoal;
+                    System.out.println("Значение изменено на: " + stepsGoal);
+                } else {
+                    System.out.println("Значение не может быть отрицательным");
+                }
             } else if (command == 4) {
                 System.out.println("Выход");
                 break;
