@@ -1,5 +1,5 @@
 public class StepTracker {
-    int [][] monthAndDay = new int[12][30]; // Использовал двумерный массив, так как показалось интеренее реализовать так, не смотря на указание в подсказке на GetDate.
+    int [][] monthAndDay = new int[12][30]; // Использовал двумерный массив, так как показалось интеренее реализовать так, не смотря на указание в подсказке на GetDate. Наставник был не против)
     int stepsGoal = 10000;
     Converter converter = new Converter();
 
@@ -10,30 +10,27 @@ public class StepTracker {
                     monthAndDay[monthInput - 1][dayInput - 1] = stepInput; //Записал в массив данные о шагах.
                 }
             }
-            System.out.println("Значение за месяц " + monthInput + " и день " + dayInput + " в размере " + stepInput + " шагов записано."); // В ТЗ нет, но для себя вывел
         } else {
             System.out.println("Колчество шагов не может быть отрицательным");
         }
     }
-    void showStatsByDay(int monthInput){
-        for (int i = monthInput; i == monthInput; i++) {  // так определяю месяц для вывода информации по дням.
+    void showStatsByDay(int monthInput){ // Вывод информации по кажому дню.
             for (int j = 0; j < monthAndDay[0].length; j++) {
-                System.out.print("Месяц: " + i + ", " + (j + 1) +" день: " + monthAndDay[monthInput-1][j] +", "); // Вывод информации по кажому дню.
+                System.out.print((j + 1) +" день: " + monthAndDay[monthInput-1][j] +", ");
             }
-        }
-        System.out.println(); // что бы последующие выводы на экран были в следующей сроке
+        System.out.println(); // Что бы последующие выводы на экран были в следующей сроке, а не как при System.out.print();
     }
-    void showStatsMonthly(int monthInput){
+    void showStatsMonthly(int monthInput){ //Вся месячная статистика, кроме лучшей серии
         int sumSteps = 0;
             for (int j = 0; j < monthAndDay[0].length; j++){
-            sumSteps = sumSteps + monthAndDay[monthInput-1][j];
+            sumSteps = sumSteps + monthAndDay[monthInput-1][j]; //Общая сумма шагов по дням в определенном месяце
             }
-        System.out.println("Общая сумма шагов за месяц " + monthInput + ": " + sumSteps);
+        System.out.println("Общая сумма шагов за месяц: " + sumSteps);
         System.out.println("Среднее ко-во шагов за месяц составляет: " + sumSteps/30);
         System.out.println("За месяц вы прошли: " + converter.stepsToKm(sumSteps) + " километров");
         System.out.println("За месяц вы сожгли: " + converter.stepsToKCal(sumSteps) + " килокалорий");
     }
-    void findMaxStreak(int monthInput){
+    void findMaxStreak(int monthInput){ //Поиск лучшей серии
         int maxStreak = 0;
         int currentStreak = 0;
             for (int j = 0; j < monthAndDay[0].length; j++) {
@@ -47,7 +44,7 @@ public class StepTracker {
             }
         System.out.println("Ваша лучшая серия составила: " + maxStreak);
     }
-    void changeStepsGoal(int newStepsGoal){
+    void changeStepsGoal(int newStepsGoal){ //Изменение цели
         if (newStepsGoal>=0){
             stepsGoal = newStepsGoal;
             System.out.println("Значение изменено на: " + stepsGoal);
